@@ -1,6 +1,7 @@
 class Cell:
-    def __init__(self, position, neighbours, alive=False):
-        self.position = position
+    def __init__(self, position, neighbours=[], alive=False):
+        self.row = position[0]
+        self.col = position[1]
         self.neighbours = neighbours
         self.alive = alive
         self.alive_next_state = None
