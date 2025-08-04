@@ -20,3 +20,19 @@ class Cell:
     
     def update_state(self):
         self.alive = self.alive_next_state
+
+    def get_neighbours(self, grid):
+        self.neighbours = []       
+        for row_displacement in [-1, 0, 1]:
+            for col_displacement in [-1, 0, 1]:
+                if row_displacement == 0 and col_displacement == 0:
+                    continue
+                else:
+                    neighbour_row = self.row + row_displacement
+                    neighbour_col = self.col + col_displacement
+
+                    if neighbour_row < 0 or neighbour_row >= grid.rows or neighbour_col < 0 or neighbour_col >= grid.cols:
+                        continue
+                    else:
+                        self.neighbours.append(grid.cells[neighbour_row][neighbour_col])
+

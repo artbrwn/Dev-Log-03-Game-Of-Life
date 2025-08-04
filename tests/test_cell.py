@@ -25,3 +25,12 @@ def test_update_state_dead():
     target_cell.update_state()
     assert not target_cell.alive
 
+def test_3x3_grid_center_cell_has_8_neighbours():
+    grid_test = Grid(3, 3)
+    grid_test.setup()
+    assert len(grid_test.cells[1][1].neighbours) == 8
+
+def test_top_left_corner_only_has_3_neighbours():
+    grid_test = Grid()
+    grid_test.setup()
+    assert len(grid_test.cells[0][0].neighbours) == 3
