@@ -1,7 +1,7 @@
-from src.cell import Cell
+from cell import Cell
 
 class Grid:
-    def __init__(self, rows=3, cols=3):
+    def __init__(self, rows=10, cols=10):
         self.rows = rows
         self.cols = cols
         self.cells = []

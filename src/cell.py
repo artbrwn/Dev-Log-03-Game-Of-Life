@@ -8,15 +8,18 @@ class Cell:
         self.alive_next_state = None
 
     def decide_next_state(self):
-        accum = 0
+        alive_neighbours = 0
         for neighbour in self.neighbours:
             if neighbour.alive:
-                accum += 1
-        
-        if accum >= 3:
-            self.alive_next_state = True
+                alive_neighbours += 1
+        if self.alive:
+            if alive_neighbours >= 2 and alive_neighbours <= 3:
+                self.alive_next_state = True
+            else:
+                self.alive_next_state = False
         else:
-            self.alive_next_state = False
+            if alive_neighbours == 3:
+                self.alive_next_state = True
     
     def update_state(self):
         self.alive = self.alive_next_state
