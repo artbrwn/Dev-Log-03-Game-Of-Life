@@ -1,5 +1,5 @@
 class Cell:
-    def __init__(self, position, neighbours=[], alive=False):
+    def __init__(self, position, neighbours=[], alive=True):
         self.position = position
         self.row = position[0]
         self.col = position[1]
@@ -24,7 +24,7 @@ class Cell:
     def update_state(self):
         self.alive = self.alive_next_state
 
-    def get_neighbours(self, grid):
+    def get_neighbours(self, universe):
         self.neighbours = []       
         for row_displacement in [-1, 0, 1]:
             for col_displacement in [-1, 0, 1]:
@@ -34,8 +34,9 @@ class Cell:
                     neighbour_row = self.row + row_displacement
                     neighbour_col = self.col + col_displacement
 
-                    if neighbour_row < 0 or neighbour_row >= grid.rows or neighbour_col < 0 or neighbour_col >= grid.cols:
+                    if neighbour_row < 0 or neighbour_row >= universe.rows or neighbour_col < 0 or neighbour_col >= universe.cols:
                         continue
                     else:
-                        self.neighbours.append(grid.cells[neighbour_row][neighbour_col])
-
+                        neighbour = universe.cells.get((neighbour_row, neighbour_col))
+                        if neighbour:
+                            self.neighbours.append(neighbour)
