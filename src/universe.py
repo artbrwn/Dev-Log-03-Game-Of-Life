@@ -1,6 +1,6 @@
 from cell import Cell
 
-class Grid:
+class Universe:
     def __init__(self, rows=10, cols=10):
         self.rows = rows
         self.cols = cols
