@@ -8,23 +8,25 @@ class Cell:
         self.alive_next_state = None
 
     def decide_next_state(self):
-        alive_neighbours = 0
-        for neighbour in self.neighbours:
-            if neighbour.alive:
-                alive_neighbours += 1
-        if self.alive:
-            if alive_neighbours >= 2 and alive_neighbours <= 3:
-                self.alive_next_state = True
-            else:
-                self.alive_next_state = False
+        """
+        Updates self.alive_next_state to true if the cell has 2 or 3 alive neighbours.
+        """
+        alive_neighbours = len(self.neighbours)
+        if alive_neighbours >= 2 and alive_neighbours <= 3:
+            self.alive_next_state = True
         else:
-            if alive_neighbours == 3:
-                self.alive_next_state = True
+            self.alive_next_state = False
     
     def update_state(self):
+        """
+        Updates self.alive to match the previous self.alive_next_state.
+        """
         self.alive = self.alive_next_state
 
     def get_neighbours(self, universe):
+        """
+        Updates self.neighbours with only those cells alive in the limits of the actual cell.
+        """
         self.neighbours = []       
         for row_displacement in [-1, 0, 1]:
             for col_displacement in [-1, 0, 1]:
