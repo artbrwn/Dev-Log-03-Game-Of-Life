@@ -1,22 +1,32 @@
 from src.universe import Universe
 from src.cell import Cell
+import pygame
+from src.view.game_view import GameView
 import random
 from tabulate import tabulate
 
 def main():
-    main_universe = Universe()
-    # main_universe.setup()
+    pygame.init()
+    main_universe = Universe(50,50)
+    view = GameView(main_universe, cell_size=10)
+    clock = pygame.time.Clock()
+
     for row in range(main_universe.rows):
         for col in range(main_universe.cols):
             if random.random() < 0.5:
                 position = (row, col)
                 main_universe.cells[position] = Cell(position, main_universe)
-    while True:
+    running = True
+
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
         main_universe.tick()
-        write_in_console(main_universe)
-        keep = input("Press enter if you want to continue or send any other letter to exit: ")
-        if keep != "":
-            break
+        view.draw()
+        clock.tick(10)
+    
+    pygame.quit()
 
 def write_in_console(universe):
     grid = []
