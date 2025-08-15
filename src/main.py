@@ -17,13 +17,26 @@ def main():
                 position = (row, col)
                 main_universe.cells[position] = Cell(position, main_universe)
     running = True
-
+    pause = True
+    main_universe.tick()
+    view.draw()
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-        main_universe.tick()
-        view.draw()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    if view.buttons[0].collidepoint(event.pos):
+                        pause = False
+                    elif view.buttons[1].collidepoint(event.pos):
+                        pause = True
+                    elif view.buttons[2].collidepoint(event.pos):
+                        main_universe.tick()
+                        view.draw()
+                        clock.tick(10)
+        if not pause:
+            main_universe.tick()
+            view.draw()
         clock.tick(10)
     
     pygame.quit()

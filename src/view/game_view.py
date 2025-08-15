@@ -9,6 +9,27 @@ class GameView:
                 )
             self.navigation_bar_height = navigation_bar_height
             self.button_size = navigation_bar_height - navigation_bar_height * 0.2
+            self.buttons = []
+
+            # Coordinate in y of navigation bar bottom left corner
+            bar_bot_y = self.universe.rows * self.cell_size + self.navigation_bar_height
+
+            # Spacing between buttons
+            spacing = self.button_size // 2
+            
+            total_buttons_width = 3 * self.button_size + (3 - 1) * spacing
+
+            start_x = (self.universe.cols * self.cell_size - total_buttons_width) // 2
+
+            for i in range(3): 
+                button = pygame.Rect(
+                    start_x + i * (self.button_size + spacing),
+                    bar_bot_y - self.navigation_bar_height // 2 - self.button_size // 2,
+                    self.button_size,
+                    self.button_size
+                )
+                
+                self.buttons.append(button)
     
     def draw(self):
         self.screen.fill(("#2B332B"))
@@ -31,23 +52,6 @@ class GameView:
         pygame.draw.rect(self.screen, ("#395539"), bar_rect)
         
         # Draw pause, play, and next step buttons
-
-        # Coordinate in y of navigation bar bottom left corner
-        bar_bot_y = self.universe.rows * self.cell_size + self.navigation_bar_height
-
-        # Spacing between buttons
-        spacing = self.button_size // 2
-        
-        total_buttons_width = 3 * self.button_size + (3 - 1) * spacing
-
-        start_x = (self.universe.cols * self.cell_size - total_buttons_width) // 2
-
-        for i in range(3): 
-            button = pygame.Rect(
-                start_x + i * (self.button_size + spacing),
-                bar_bot_y - self.navigation_bar_height // 2 - self.button_size // 2,
-                self.button_size,
-                self.button_size
-            )
+        for button in self.buttons:
             pygame.draw.rect(self.screen, (255, 255, 255), button)
         pygame.display.flip()
