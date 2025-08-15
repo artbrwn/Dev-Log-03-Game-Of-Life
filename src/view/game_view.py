@@ -10,6 +10,9 @@ class GameView:
             self.navigation_bar_height = navigation_bar_height
             self.button_size = navigation_bar_height - navigation_bar_height * 0.2
             self.buttons = []
+            self.button_labels = [">", "||", ">|"]
+            self.font = pygame.font.SysFont("arial", int(self.button_size * 0.8))
+
 
             # Coordinate in y of navigation bar bottom left corner
             bar_bot_y = self.universe.rows * self.cell_size + self.navigation_bar_height
@@ -52,6 +55,9 @@ class GameView:
         pygame.draw.rect(self.screen, ("#395539"), bar_rect)
         
         # Draw pause, play, and next step buttons
-        for button in self.buttons:
+        for i, button in enumerate(self.buttons):
             pygame.draw.rect(self.screen, (255, 255, 255), button)
+            label_surface = self.font.render(self.button_labels[i], True, (0, 0, 0))
+            label_rect = label_surface.get_rect(center=button.center)
+            self.screen.blit(label_surface, label_rect)
         pygame.display.flip()
