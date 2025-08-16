@@ -1,15 +1,17 @@
-from src.universe import Universe
-from src.cell import Cell
 import pygame
-from src.view.game_view import GameView
 import random
 from tabulate import tabulate
+from src.universe import Universe
+from src.cell import Cell
+from src.view.game_view import GameView
+from src.persistence import Persistence
 
 def main():
     pygame.init()
     main_universe = Universe(50,50)
     view = GameView(main_universe, cell_size=10)
     clock = pygame.time.Clock()
+    persistence = Persistence()
 
     for row in range(main_universe.rows):
         for col in range(main_universe.cols):
@@ -34,6 +36,8 @@ def main():
                         main_universe.tick()
                         view.draw()
                         clock.tick(10)
+                    elif view.buttons[3].collidepoint(event.pos):
+                        persistence.save_state(main_universe)
         if not pause:
             main_universe.tick()
             view.draw()

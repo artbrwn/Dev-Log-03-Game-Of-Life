@@ -10,7 +10,6 @@ class Persistence:
         
         with open(filename, "w", newline="") as f:
             writer = csv.writer(f)
-            writer.writerow("position")
             for coordinates in universe.cells.keys():
                 writer.writerow(coordinates)
 
