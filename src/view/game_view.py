@@ -10,7 +10,7 @@ class GameView:
             self.navigation_bar_height = navigation_bar_height
             self.button_size = navigation_bar_height - navigation_bar_height * 0.2
             self.buttons = []
-            self.button_labels = [">", "||", ">|"]
+            self.button_labels = [">", "||", ">|", "[o]"]
             self.font = pygame.font.SysFont("arial", int(self.button_size * 0.8))
 
 
@@ -20,11 +20,11 @@ class GameView:
             # Spacing between buttons
             spacing = self.button_size // 2
             
-            total_buttons_width = 3 * self.button_size + (3 - 1) * spacing
+            total_buttons_width = 4 * self.button_size + (4 - 1) * spacing
 
             start_x = (self.universe.cols * self.cell_size - total_buttons_width) // 2
 
-            for i in range(3): 
+            for i in range(4): 
                 button = pygame.Rect(
                     start_x + i * (self.button_size + spacing),
                     bar_bot_y - self.navigation_bar_height // 2 - self.button_size // 2,
