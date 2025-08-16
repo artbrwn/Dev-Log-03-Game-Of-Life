@@ -5,8 +5,9 @@ class Persistence:
     def __init__(self):
         pass
 
-    def save_state(self, universe, filename):
-
+    def save_state(self, universe):
+        filename = self.get_next_file_name()
+        
         with open(filename, "w", newline="") as f:
             writer = csv.writer(f)
             writer.writerow("position")
