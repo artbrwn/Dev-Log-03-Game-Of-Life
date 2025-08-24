@@ -60,10 +60,12 @@ def main():
             for event in events:
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if event.button == 1:
-                        if load_menu_view.button.collidepoint(event.pos):
+                        if load_menu_view.close_button.collidepoint(event.pos):
                             state = "game"
+
             game_files = persistence.load_game_files_names()
             load_menu_view.game_files = game_files
+            load_menu_view.update_game_file_buttons()
             load_menu_view.draw()
         clock.tick(10)
     
