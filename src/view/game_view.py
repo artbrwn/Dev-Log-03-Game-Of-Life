@@ -2,11 +2,11 @@ import pygame
 from src.config import colors 
 
 class GameView:
-    def __init__(self, universe, cell_size=10, navigation_bar_height=50):
+    def __init__(self, universe, screen, cell_size=10, navigation_bar_height=50):
             self.universe = universe
             self.cell_size = cell_size
             self.screen_size = (universe.cols * cell_size, universe.rows * cell_size + navigation_bar_height)
-            self.screen = pygame.display.set_mode(self.screen_size)
+            self.screen = screen
             self.navigation_bar_height = navigation_bar_height
             self.button_size = navigation_bar_height - navigation_bar_height * 0.2
             self.buttons = []
