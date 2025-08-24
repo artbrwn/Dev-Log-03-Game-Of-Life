@@ -1,4 +1,5 @@
 import pygame
+from src.config import colors 
 
 class GameView:
     def __init__(self, universe, cell_size=10, navigation_bar_height=50):
@@ -34,7 +35,7 @@ class GameView:
                 self.buttons.append(button)
     
     def draw(self):
-        self.screen.fill(("#2B332B"))
+        self.screen.fill((colors.BACKGROUND))
         # Draw cells (alive)
         for (row, col) in self.universe.cells:
             cell_rect = pygame.Rect(
