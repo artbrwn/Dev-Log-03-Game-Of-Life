@@ -10,7 +10,6 @@ class LoadMenuview:
         self.button_size = button_size
         self.close_button = pygame.Rect(self.screen_size[0] - self.button_size - 30, 30, self.button_size, self.button_size)
         self.font = pygame.font.SysFont("arial", int(self.button_size * 0.8))
-
         self.file_buttons = []
 
     def draw(self):
@@ -20,9 +19,9 @@ class LoadMenuview:
         pygame.draw.rect(self.screen, (255, 255, 255), self.close_button)
 
         # Draw game buttons
-        for i, button in enumerate(self.file_buttons):
+        for i, (button, _) in enumerate(self.file_buttons):
             pygame.draw.rect(self.screen, (255, 255, 255), button)
-            label_surface = self.font.render(str(i + 1), True, (0, 0, 0))
+            label_surface = self.font.render(str(i), True, (0, 0, 0))
             label_rect = label_surface.get_rect(center=button.center)
             self.screen.blit(label_surface, label_rect)
 
@@ -31,11 +30,13 @@ class LoadMenuview:
     def update_game_file_buttons(self):
         self.file_buttons = []
         spacing = self.button_size // 2
-        for i in range(len(self.game_files)):
+        i = 0
+        for file in self.game_files:
             button = pygame.Rect(
                 30,
                 30 + i * (self.button_size + spacing),
                 self.button_size,
                 self.button_size
                 )
-            self.file_buttons.append(button)
+            i += 1
+            self.file_buttons.append((button, file))

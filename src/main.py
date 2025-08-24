@@ -13,7 +13,7 @@ def main():
     screen = pygame.display.set_mode((800, 600))
     game_view = GameView(main_universe, cell_size=10, screen=screen)
     clock = pygame.time.Clock()
-    persistence = Persistence()
+    persistence = Persistence(main_universe)
     load_menu_view = LoadMenuview(screen, game_view.screen_size, game_view.button_size)
 
     

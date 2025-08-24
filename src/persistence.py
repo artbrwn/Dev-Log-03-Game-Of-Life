@@ -2,9 +2,10 @@ import csv
 import os
 
 class Persistence:
-    def __init__(self):
+    def __init__(self, universe):
         self.saves_folder_name = "saves"
         self.extension = ".csv"
+        self.universe = universe
 
     def save_state(self, universe):
         filename = self.get_next_file_name()
