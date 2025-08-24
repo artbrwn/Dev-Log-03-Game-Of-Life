@@ -4,15 +4,16 @@ class GameView:
     def __init__(self, universe, cell_size=10, navigation_bar_height=50):
             self.universe = universe
             self.cell_size = cell_size
-            self.screen = pygame.display.set_mode(
-                (universe.cols * cell_size, universe.rows * cell_size + navigation_bar_height)
-                )
+            self.screen_size = (universe.cols * cell_size, universe.rows * cell_size + navigation_bar_height)
+            self.screen = pygame.display.set_mode(self.screen_size)
             self.navigation_bar_height = navigation_bar_height
             self.button_size = navigation_bar_height - navigation_bar_height * 0.2
             self.buttons = []
             self.button_labels = [">", "||", ">|", "[o]", "[^]"] 
             self.font = pygame.font.SysFont("arial", int(self.button_size * 0.8))
             self.notification = {}
+            
+
 
 
             # Coordinate in y of navigation bar bottom left corner
