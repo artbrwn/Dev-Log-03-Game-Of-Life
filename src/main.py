@@ -53,7 +53,8 @@ def main():
                             state = "menu_load"
             if not pause:
                 main_universe.tick()
-                game_view.draw()
+                
+            game_view.draw()
 
         elif state == "menu_load":
             for event in events:
