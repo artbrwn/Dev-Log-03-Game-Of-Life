@@ -12,6 +12,7 @@ class GameView:
             self.buttons = []
             self.button_labels = [">", "||", ">|", "[o]"]
             self.font = pygame.font.SysFont("arial", int(self.button_size * 0.8))
+            self.notification = {}
 
 
             # Coordinate in y of navigation bar bottom left corner
@@ -60,4 +61,17 @@ class GameView:
             label_surface = self.font.render(self.button_labels[i], True, (0, 0, 0))
             label_rect = label_surface.get_rect(center=button.center)
             self.screen.blit(label_surface, label_rect)
+        
+        # Draw notification
+        if self.notification:
+            elapsed = pygame.time.get_ticks() - self.notification["start_time"]
+            if elapsed < self.notification["duration"]:
+                notification_surface = self.font.render(self.notification["text"], True, (255, 255, 255))
+                notification_rect = notification_surface.get_rect(center=(self.screen.get_width() // 2, self.screen.get_height() // 2))
+                self.screen.blit(notification_surface, notification_rect)
+        else:
+             self.notification = {}
+
         pygame.display.flip()
+
+        

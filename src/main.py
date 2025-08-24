@@ -38,6 +38,7 @@ def main():
                         clock.tick(10)
                     elif view.buttons[3].collidepoint(event.pos):
                         persistence.save_state(main_universe)
+                        view.notification = {"text": "Saved!", "start_time": pygame.time.get_ticks(), "duration": 1500}
         if not pause:
             main_universe.tick()
             view.draw()
