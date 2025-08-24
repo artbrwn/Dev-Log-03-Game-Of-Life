@@ -12,10 +12,7 @@ class GameView:
             self.button_labels = [">", "||", ">|", "[o]", "[^]"] 
             self.font = pygame.font.SysFont("arial", int(self.button_size * 0.8))
             self.notification = {}
-            
-
-
-
+  
             # Coordinate in y of navigation bar bottom left corner
             bar_bot_y = self.universe.rows * self.cell_size + self.navigation_bar_height
 

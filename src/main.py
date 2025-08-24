@@ -47,7 +47,7 @@ def main():
                 main_universe.tick()
                 game_view.draw()
         elif state == "menu_load":
-            pass
+            persistence.load_game_files_names()
         clock.tick(10)
     
     pygame.quit()
