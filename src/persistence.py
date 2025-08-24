@@ -1,5 +1,6 @@
 import csv
 import os
+from src.cell import Cell
 
 class Persistence:
     def __init__(self, universe):
@@ -51,3 +52,18 @@ class Persistence:
             if f.endswith(self.extension)
             ]
         return valid_files
+    
+    def load_saved_game(self, saved_game_file):
+        # Reset existing cells
+        self.universe.cells = {}
+        
+        # Pick the file from saves folder
+        base_dir = os.path.dirname(__file__)
+        project_dir = os.path.abspath(os.path.join(base_dir, ".."))
+        saves_dir = os.path.join(project_dir, self.saves_folder_name)
+        saved_game_file_route = os.path.join(saves_dir, saved_game_file)
+        with open(saved_game_file_route, mode="r") as csvfile:
+            reader = csv.reader(csvfile)
+            for cell in reader:
+                row, col = int(cell[0]), int(cell[1])
+                self.universe.cells[(row, col)] = Cell((row, col), self.universe)

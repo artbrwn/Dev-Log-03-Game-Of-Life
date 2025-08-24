@@ -62,6 +62,11 @@ def main():
                     if event.button == 1:
                         if load_menu_view.close_button.collidepoint(event.pos):
                             state = "game"
+                        else:
+                            for rect, filename in load_menu_view.file_buttons:
+                                if rect.collidepoint(event.pos):
+                                    persistence.load_saved_game(filename)
+                                    state = "game"
 
             game_files = persistence.load_game_files_names()
             load_menu_view.game_files = game_files
