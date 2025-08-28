@@ -7,7 +7,10 @@ from src.persistence import Persistence
 from src.view.load_menu_view import LoadMenuView
 
 def main():
+    # Initialize pygame
     pygame.init()
+
+    # Initialize main objects
     main_universe = Universe(50,50)
     screen = pygame.display.set_mode((800, 600))
     game_view = GameView(main_universe, cell_size=10, screen=screen)
@@ -15,14 +18,21 @@ def main():
     persistence = Persistence(main_universe)
     load_menu_view = LoadMenuView(screen, game_view.screen_size, game_view.button_size)
 
+    # Randomly distribute alive cells in main universe
     main_universe.seed_random(probability=0.5)
 
+    # First tick of universe and draw
+    main_universe.tick()
+    game_view.draw()
+
+    # Starting variables of main loop
     running = True
     pause = True
     state = "game"
-    main_universe.tick()
-    game_view.draw()
+
+    # Main loop
     while running:
+
         events = pygame.event.get()
         for event in events:
             if event.type == pygame.QUIT:
@@ -69,6 +79,9 @@ def main():
     pygame.quit()
 
 def write_in_console(universe):
+    """
+    Creates a representation of the game in console
+    """
     grid = []
     for y in range(universe.rows):
         row = []
