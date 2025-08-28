@@ -35,38 +35,36 @@ def main():
                 running = False
 
         if state == "game":
-            for event in events:
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    if event.button == 1:
-                        if game_view.buttons[0].collidepoint(event.pos):
-                            pause = False
-                        elif game_view.buttons[1].collidepoint(event.pos):
-                            pause = True
-                        elif game_view.buttons[2].collidepoint(event.pos):
-                            main_universe.tick()
-                            game_view.draw()
-                            clock.tick(10)
-                        elif game_view.buttons[3].collidepoint(event.pos):
-                            persistence.save_state(main_universe)
-                            game_view.notification = {"text": "Saved!", "start_time": pygame.time.get_ticks(), "duration": 1500}
-                        elif game_view.buttons[4].collidepoint(event.pos):
-                            state = "menu_load"
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    if game_view.buttons[0].collidepoint(event.pos):
+                        pause = False
+                    elif game_view.buttons[1].collidepoint(event.pos):
+                        pause = True
+                    elif game_view.buttons[2].collidepoint(event.pos):
+                        main_universe.tick()
+                        game_view.draw()
+                        clock.tick(10)
+                    elif game_view.buttons[3].collidepoint(event.pos):
+                        persistence.save_state(main_universe)
+                        game_view.notification = {"text": "Saved!", "start_time": pygame.time.get_ticks(), "duration": 1500}
+                    elif game_view.buttons[4].collidepoint(event.pos):
+                        state = "menu_load"
             if not pause:
                 main_universe.tick()
                 
             game_view.draw()
 
         elif state == "menu_load":
-            for event in events:
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    if event.button == 1:
-                        if load_menu_view.close_button.collidepoint(event.pos):
-                            state = "game"
-                        else:
-                            for rect, filename in load_menu_view.file_buttons:
-                                if rect.collidepoint(event.pos):
-                                    persistence.load_saved_game(filename)
-                                    state = "game"
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    if load_menu_view.close_button.collidepoint(event.pos):
+                        state = "game"
+                    else:
+                        for rect, filename in load_menu_view.file_buttons:
+                            if rect.collidepoint(event.pos):
+                                persistence.load_saved_game(filename)
+                                state = "game"
 
             game_files = persistence.load_game_files_names()
             load_menu_view.game_files = game_files
