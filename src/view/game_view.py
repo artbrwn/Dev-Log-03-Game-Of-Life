@@ -44,7 +44,7 @@ class GameView:
                 self.cell_size,
                 self.cell_size
             )
-            pygame.draw.rect(self.screen, (0, 255, 0), cell_rect)
+            pygame.draw.rect(self.screen, colors.CELL_COLOR, cell_rect)
         # Draw flux control bar below
         bar_rect = pygame.Rect(
             0,
@@ -52,12 +52,12 @@ class GameView:
             self.universe.cols * self.cell_size,
             self.navigation_bar_height
             )
-        pygame.draw.rect(self.screen, ("#395539"), bar_rect)
+        pygame.draw.rect(self.screen, (colors.BAR_COLOR), bar_rect)
         
         # Draw pause, play, and next step buttons
         for i, button in enumerate(self.buttons):
-            pygame.draw.rect(self.screen, (255, 255, 255), button)
-            label_surface = self.font.render(self.button_labels[i], True, (0, 0, 0))
+            pygame.draw.rect(self.screen, colors.BUTTONS_COLOR, button)
+            label_surface = self.font.render(self.button_labels[i], True, colors.BUTTONS_TEXT_COLOR)
             label_rect = label_surface.get_rect(center=button.center)
             self.screen.blit(label_surface, label_rect)
         
@@ -65,7 +65,7 @@ class GameView:
         if self.notification:
             elapsed = pygame.time.get_ticks() - self.notification["start_time"]
             if elapsed < self.notification["duration"]:
-                notification_surface = self.font.render(self.notification["text"], True, (255, 255, 255))
+                notification_surface = self.font.render(self.notification["text"], True, colors.NOTIFICATION_COLOR)
                 notification_rect = notification_surface.get_rect(center=(self.screen.get_width() // 2, self.screen.get_height() // 2))
                 self.screen.blit(notification_surface, notification_rect)
         else:
