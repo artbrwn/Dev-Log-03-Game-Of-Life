@@ -13,15 +13,15 @@ class LoadMenuView:
         self.file_buttons = []
 
     def draw(self):
-        self.screen.fill(colors.BACKGROUND)
+        self.screen.fill(colors.BAR_COLOR)
 
         # Draw close button
-        pygame.draw.rect(self.screen, (255, 255, 255), self.close_button)
+        pygame.draw.rect(self.screen, colors.BUTTONS_COLOR, self.close_button)
 
         # Draw game buttons
         for i, (button, _) in enumerate(self.file_buttons):
-            pygame.draw.rect(self.screen, (255, 255, 255), button)
-            label_surface = self.font.render(str(i), True, (0, 0, 0))
+            pygame.draw.rect(self.screen, colors.BUTTONS_COLOR, button)
+            label_surface = self.font.render(str(i), True, (colors.BUTTONS_TEXT_COLOR))
             label_rect = label_surface.get_rect(center=button.center)
             self.screen.blit(label_surface, label_rect)
 
