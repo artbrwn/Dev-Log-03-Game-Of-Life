@@ -1,5 +1,4 @@
 import pygame
-import random
 from tabulate import tabulate
 from src.universe import Universe
 from src.cell import Cell
@@ -16,13 +15,8 @@ def main():
     persistence = Persistence(main_universe)
     load_menu_view = LoadMenuView(screen, game_view.screen_size, game_view.button_size)
 
-    
+    main_universe.seed_random(probability=0.5)
 
-    for row in range(main_universe.rows):
-        for col in range(main_universe.cols):
-            if random.random() < 0.5:
-                position = (row, col)
-                main_universe.cells[position] = Cell(position, main_universe)
     running = True
     pause = True
     state = "game"

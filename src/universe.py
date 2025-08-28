@@ -1,4 +1,5 @@
 from src.cell import Cell
+import random
 
 class Universe:
     def __init__(self, rows=10, cols=10):
@@ -20,3 +21,10 @@ class Universe:
                 self.cells[position] = Cell(position, self)
         
         self.birth_signals.clear()
+    
+    def seed_random(self, probability):
+        for row in range(self.rows):
+            for col in range(self.cols):
+                if random.random() < probability:
+                    position = (row, col)
+                    self.cells[position] = Cell(position, self)
