@@ -17,12 +17,6 @@ class Cell:
             self.alive_next_state = True
         else:
             self.alive_next_state = False
-    
-    def update_state(self):
-        """
-        Updates self.alive to match the previous self.alive_next_state.
-        """
-        self.alive = self.alive_next_state
 
     def explore_universe(self):
         """
