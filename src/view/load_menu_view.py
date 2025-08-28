@@ -1,7 +1,7 @@
 import pygame
 from src.config import colors
 
-class LoadMenuview:
+class LoadMenuView:
     def __init__(self, screen, screen_size, button_size):
         self.screen = screen
         self.screen_size = screen_size

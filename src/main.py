@@ -5,7 +5,7 @@ from src.universe import Universe
 from src.cell import Cell
 from src.view.game_view import GameView
 from src.persistence import Persistence
-from src.view.load_menu_view import LoadMenuview
+from src.view.load_menu_view import LoadMenuView
 
 def main():
     pygame.init()
@@ -14,7 +14,7 @@ def main():
     game_view = GameView(main_universe, cell_size=10, screen=screen)
     clock = pygame.time.Clock()
     persistence = Persistence(main_universe)
-    load_menu_view = LoadMenuview(screen, game_view.screen_size, game_view.button_size)
+    load_menu_view = LoadMenuView(screen, game_view.screen_size, game_view.button_size)
 
     
 
