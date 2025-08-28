@@ -76,11 +76,11 @@ This decentralized design emphasizes autonomy and cooperation between cells, whi
     ```
     
 ## 🎯 Design Choices
-    - Autonomous Cells:
-    The key experiment in this project is removing the “god” controller and letting cells decide their own fate. This makes the code slightly more complex but highlights distributed responsibility and communication between objects.
+- Autonomous Cells:
+The key experiment in this project is removing the “god” controller and letting cells decide their own fate. This makes the code slightly more complex but highlights distributed responsibility and communication between objects.
 
-    - Load Menu Reinitialization:
-    When entering the Load Menu, the game resets the window. This design allows loading saved universes with different dimensions, not just the same grid size.
+- Load Menu Reinitialization:
+When entering the Load Menu, the game resets the window. This design allows loading saved universes with different dimensions, not just the same grid size.
 
 ## 📜 License
 This project is open source and available under the MIT License.
