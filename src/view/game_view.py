@@ -2,6 +2,10 @@ import pygame
 from src.config import colors 
 
 class GameView:
+    """
+    Handles the graphical representation of the Game of Life universe, 
+    including rendering cells, UI elements, and notifications.
+    """
     def __init__(self, universe, screen, cell_size=10, navigation_bar_height=50):
             self.universe = universe
             self.cell_size = cell_size
@@ -35,6 +39,14 @@ class GameView:
                 self.buttons.append(button)
     
     def draw(self):
+        """
+        Render the game view:
+        - Fills the background.
+        - Draws all alive cells.
+        - Draws the navigation bar with buttons.
+        - Displays temporary notifications if any.
+        - Updates the display (pygame.display.flip).
+        """
         self.screen.fill((colors.BACKGROUND))
         # Draw cells (alive)
         for (row, col) in self.universe.cells:
