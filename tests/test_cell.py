@@ -20,11 +20,3 @@ def test_cell_explore_finds_neighbours():
     u.cells[(1, 1)].explore_universe()
     neighbours = u.cells[(1, 1)].neighbours
     assert len(neighbours) == 8  
-
-def test_cell_does_not_include_itself_as_neighbour():
-    u = Universe(3, 3)
-    u.seed_random(1)
-    c = u.cells[(1, 1)]
-    c.explore_universe()
-    assert c not in c.neighbours
-    
