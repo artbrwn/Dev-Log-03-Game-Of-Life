@@ -2,6 +2,13 @@ import pygame
 from src.config import colors
 
 class LoadMenuView:
+    """
+    A view responsible for displaying and managing the load menu UI.
+
+    This class handles the rendering of buttons for available game files,
+    as well as a close button. It provides a way to update the buttons dynamically
+    based on the list of available saved games.
+    """
     def __init__(self, screen, screen_size, button_size):
         self.screen = screen
         self.screen_size = screen_size
@@ -13,6 +20,17 @@ class LoadMenuView:
         self.file_buttons = []
 
     def draw(self):
+        """
+        Render the load menu view on the screen.
+
+        This includes:
+            - Filling the background.
+            - Drawing the close button.
+            - Drawing a button for each available game file.
+            - Displaying a numeric label for each file button.
+
+        Finally, updates the display using pygame.display.flip().
+        """
         self.screen.fill(colors.BAR_COLOR)
 
         # Draw close button
@@ -28,6 +46,14 @@ class LoadMenuView:
         pygame.display.flip()
     
     def update_game_file_buttons(self):
+        """
+        Update the list of file buttons based on the current game files.
+
+        Each button is positioned vertically with spacing, and associated
+        with a file from the `game_files` list.
+
+        This method resets the current list of `file_buttons` and rebuilds it.
+        """
         self.file_buttons = []
         spacing = self.button_size // 2
         i = 0
